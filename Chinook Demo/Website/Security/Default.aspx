@@ -14,7 +14,20 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="users">TBA: Show website user details</div>
+                <div class="tab-pane fade in active" id="users">TBA: Show website user details
+                
+                <asp:ListView ID="ListView1" runat="server"
+                          DataSourceID="UserProfileDataSource">
+ 
+                     </asp:ListView>
+                     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
+
+                    <asp:ObjectDataSource ID="UserProfileDataSource" runat="server" SelectMethod="ListAllUsers" TypeName="Chinook.Framework.BLL.Security.UserManager" OldValuesParameterFormatString="original_{0}" DataObjectTypeName="Chinook.Framework.Entities.Security.UserProfile" DeleteMethod="RemoveUser" InsertMethod="AddUser"></asp:ObjectDataSource>
+                    <asp:ListView ID="UserListview" runat="server" DataSourceID="UserProfileDataSource" ItemType="Chinook.Framework.Entities.Security.UserProfile">
+
+                       
+                    </asp:ListView>
+                </div>
 
                 <asp:ListView ID="RoleListView" runat="server" DataSourceID="RoleDataSource" DataKeyNames="RoleID" ItemType="Chinook.Framework.Entities.Security.RoleProfile">
                     <LayoutTemplate>
@@ -44,10 +57,25 @@
                                     <SeparatorTemplate>, </SeparatorTemplate>
 
                                 </asp:Repeater>
-                                    I
+                                    
                             </div>
                         </div>
                     </ItemTemplate>
+                    <InsertItemTemplate>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <asp:LinkButton runat="server" ID="InsertButton" CssClass="btn btn-default" CommandName="Insert" Text="Add Role"/>
+                                <asp:LinkButton runat="server" ID="RemoveButton" CssClass="btn btn-default" CommandName="Delete" Text="Remove Role"/>
+
+                            </div>
+
+
+                        </div>
+
+                    </InsertItemTemplate>
+
                 </asp:ListView>
 
                 <div class="tab-pane fade" id="roles">TBA: Show website user details
