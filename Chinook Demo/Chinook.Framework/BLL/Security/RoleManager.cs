@@ -32,13 +32,14 @@ namespace Chinook.Framework.BLL.Security
         public List<RoleProfile> ListAllRoles()
         {
             var um = new UserManager();
-            var result = from data in Roles.ToList() //Force the query data first and then get the results in-memory
-                         select new RoleProfile
+            // .ToList() is used toforce the query of data first and place the results in-memory
+            var result = from data in Roles.ToList()
+                         select new RoleProfile()
                          {
                              RoleID = data.Id,
                              RoleName = data.Name,
-                             UserNames = data.Users.Select(u => um.FindById(u.UserId).UserName)
-
+                             UserNames = data.Users.Select(u =>
+                                         um.FindById(u.UserId).UserName)
                          };
             return result.ToList();
         }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Admin_Security_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Security_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="row jumbotron">
@@ -19,6 +19,7 @@
                     <asp:ListView ID="UserListView" runat="server"
                          DataSourceID="UserProfileDataSource" DataKeyNames="UserId"
                          InsertItemPosition="LastItem"
+                         OnItemInserting="UserListView_ItemInserting"
                          ItemType="Chinook.Framework.Entities.Security.UserProfile">
                         <LayoutTemplate>
                             <div class="row bg-info">
@@ -39,7 +40,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Repeater ID="RoleUserRepeater" runat="server"
-                                         DataSource="<%# Item.RoleMemberships %>"
+                                         DataSource="<%# Item.RoleMemberShips %>"
                                          ItemType="System.String">
                                         <ItemTemplate><%# Item %></ItemTemplate>
                                         <SeparatorTemplate>, </SeparatorTemplate>
@@ -60,15 +61,19 @@
                                 </div>
                                 <div class="col-md-2">
                                     <asp:TextBox runat="server" ID="UserNameTextBox"
-                                         placeholder="User Name" />
+                                         placeholder="User Name"
+                                         Text="<%# BindItem.UserName %>" />
                                 </div>
                                 <div class="col-md-5">
                                     <asp:TextBox runat="server" ID="EmailTextBox"
                                          placeholder="Email Address"
-                                         TextMode="Email" />
+                                         TextMode="Email"
+                                         Text="<%# BindItem.Email %>" />
                                 </div>
                                 <div class="col-md-3">
-                                    TODO: checkboxes for role names....
+                                    <asp:CheckBoxList ID="RoleMemberships" runat="server"
+                                         DataSource="<%# GetRoleNames() %>">
+                                    </asp:CheckBoxList>
                                 </div>
                             </div>
                         </InsertItemTemplate>
