@@ -10,7 +10,9 @@ public partial class Security_Default : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //Force all non WebsiteAdmins to go back the home page.
+        if (!User.IsInRole("WebsiteAdmins"))
+            Response.Redirect("~/Default.aspx", true);
     }
         protected List<string> GetRoleNames()
     {
