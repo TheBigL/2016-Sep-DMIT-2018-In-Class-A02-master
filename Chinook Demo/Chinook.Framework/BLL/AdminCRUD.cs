@@ -18,7 +18,8 @@ namespace Chinook.Framework.BLL
         {
             using (var context = new ChinookContext())
             {
-                throw new NotImplementedException();//Finish this stuff, man!
+                return context.Tracks
+                            .Include(x => x.Album).Include(x => x.MediaType).Include(x.Genre).ToList();
             }
 
         }
@@ -26,19 +27,36 @@ namespace Chinook.Framework.BLL
         [DataObjectMethod(DataObjectMethodType.Insert, false)]
         public void AddTrack(Track info)
         {
-            throw new NotImplementedException();//Finish the add method too, dawg!
+            using (var context =new  ChinookContext())
+            {
+                //I might wanna do to other business process validations, but for now this'll do
+                context.Tracks.Add(info);
+                context.SaveChanges(); //This will trigger entity's validation
+
+            }
         }
 
         [DataObjectMethod(DataObjectMethodType.Update, false)]
         public void UpdateTrack(Track info)
         {
-            throw new NotImplementedException();//Finish the update method too, dawg!
+            using (var context = new ChinookContext())
+            {
+                var existing = context.Entry(info);
+                existing.State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
         [DataObjectMethod(DataObjectMethodType.Delete, false)]
         public void DeleteTrack(Track info)
         {
-            throw new NotImplementedException();//Finish the delete method too, dawg!
+            
+            using (var context = new ChinookContext())
+            {
+                var delete = context.Tracks.Find(info.TrackId);
+                context.Tracks.Remove(delete);
+                context.SaveChanges();
+            }
         }
         #endregion
 
