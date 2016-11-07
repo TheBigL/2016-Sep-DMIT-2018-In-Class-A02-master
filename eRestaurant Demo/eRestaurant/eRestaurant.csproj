@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,20 +52,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\MenuController.cs" />
-    <Compile Include="DAL\RestaurantContext.cs" />
+    <Compile Include="Entities\Bill.cs" />
+    <Compile Include="Entities\BillItem.cs" />
     <Compile Include="Entities\DTOs\CategoryWithItems.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\MenuCategory.cs" />
     <Compile Include="Entities\Pocos\MenuItem.cs" />
+    <Compile Include="Entities\Recipe.cs" />
+    <Compile Include="Entities\RecipeIngredient.cs" />
     <Compile Include="Entities\Reservation.cs" />
+    <Compile Include="Entities\RestaurantContext.cs" />
     <Compile Include="Entities\SpecialEvent.cs" />
+    <Compile Include="Entities\Table.cs" />
+    <Compile Include="Entities\Waiter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DAL\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

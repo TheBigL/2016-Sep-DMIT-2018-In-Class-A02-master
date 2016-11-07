@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using eRestaurant.DAL; // for RestaurantContext
+using eRestaurant; // for RestaurantContext
 using eRestaurant.Entities.DTOs; // for CategoryWithItems
 using eRestaurant.Entities.Pocos; // for MenuItem
+using eRestaurant.Entities;
 
 namespace eRestaurant.BLL
 {
@@ -24,7 +25,7 @@ namespace eRestaurant.BLL
                            select new CategoryWithItems()
                            {
                                Description = aCategory.Description,
-                               MenuItems = (from item in aCategory.MenuItems
+                               MenuItems = (from item in aCategory.Items
                                            orderby item.Description
                                            select new MenuItem()
                                            {

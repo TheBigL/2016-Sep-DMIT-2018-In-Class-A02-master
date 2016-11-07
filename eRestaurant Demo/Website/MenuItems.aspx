@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MenuItems.aspx.cs" Inherits="MenuItems" %>
 
+<%@ Register Src="~/UserControls/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <h1>Our Menu</h1>
+    <uc1:MessageUserControl runat="server" id="MessageUserControl" />
     <asp:GridView ID="MenuGridview" runat="server"></asp:GridView>
     <hr />
     <asp:Repeater ID="MenuRepeater" runat="server"
