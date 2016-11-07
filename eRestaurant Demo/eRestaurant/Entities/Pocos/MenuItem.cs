@@ -1,5 +1,8 @@
 ﻿namespace eRestaurant.Entities.Pocos
 {
+    /// <summary>
+    /// POCO is short for "Plain Ol' C# Objects."
+    /// </summary>
     public class MenuItem
     {
         public string Description { get; set; }

@@ -6,25 +6,26 @@ namespace eRestaurant.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class SpecialEvent
+    public partial class Recipe
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SpecialEvent()
+        public Recipe()
         {
-            Reservations = new HashSet<Reservation>();
+            RecipeIngredients = new HashSet<RecipeIngredient>();
         }
 
-        [Key]
-        [StringLength(1)]
-        public string EventCode { get; set; }
+        public int RecipeID { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public string Description { get; set; }
+        public string Instructions { get; set; }
 
-        public bool Active { get; set; }
+        public int PrepTime { get; set; }
+
+        public int ItemID { get; set; }
+
+        public virtual Item Item { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }
